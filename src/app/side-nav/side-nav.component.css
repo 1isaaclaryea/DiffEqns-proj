@@ -1,0 +1,11 @@
+.side-nav{
+    margin: 1rem 3rem;
+    padding-right: 2rem;
+    border-right: 2px solid #FF5349;
+    position: absolute;
+}
+.nav-link{
+    padding: .1rem;
+    color: #FF5349;
+    font-size: large;
+}

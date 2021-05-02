@@ -1,0 +1,172 @@
+/* .img-car{
+    height: 100%;
+} */
+img {
+    max-width: 100%;
+}
+
+div.picsum-img-wrapper{
+    padding: 1rem;
+}
+
+p.topic-text{
+    margin-bottom: 0px;
+}
+
+a{
+    color: #FF5349;
+    font-size: large;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.top-banner{
+    color: #FF5349;
+    border-bottom: 5px solid #FF5349;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.topic-text{
+    padding: 0.1rem;
+    font-size: 1.6rem;
+    text-align: center;
+}
+/* .body-container {
+    display: flex;
+    flex-direction: row;
+    overflow-y: auto;
+} */
+
+.main{
+    /* flex-shrink: 2; */
+    /* flex-basis: 70%; */
+    margin: 1rem;
+    /* flex-grow: 1; */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-left: 15rem;
+}
+
+.equation_container{
+    display: flex;
+    flex-direction: row;
+    /* padding: 1rem; */
+    /* margin: 1rem; */
+}
+
+.eqn_one{
+    margin: 1rem;
+    flex-basis: 50%;
+}
+
+.eqn_one_pic{
+    /* border-radius: .5rem; */
+    border: 2px solid #FF5349;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.eqn_two_pic{
+    /* border-radius: .5rem; */
+    border: 2px solid #FF5349;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.eqn_two{
+    margin:1rem;
+    flex-basis: 50%;
+}
+
+.solution-section{
+    display: flex;
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+}
+
+.matlab_script{
+    padding: 1rem;
+    font-family: monospace;
+    flex-grow: 1;
+    overflow-y: scroll;
+    height: 60rem;
+}
+
+.solution_graphs{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    /* justify-content: center; */
+}
+
+.graph_one{
+    padding: 1rem;
+}
+.graph_two{
+    padding: 1rem;
+}
+
+footer{
+    background-color: #FF5349;
+    color: white;
+    margin-bottom: 0px;
+}
+p.src_list{
+    margin: .5rem 1rem 0rem 1rem;
+    padding: 1rem;
+}
+
+.src_heading{
+    padding: 0.5rem;
+}
+
+.flex_container{
+    display: flex;
+}
+
+.graph_class{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.graph_class_content{
+    display: flex;
+    flex-direction: row;
+    /* margin: 1rem; */
+}
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20vh;
+    width: 0.5rem;
+}
+
+#graph{
+    padding: 1rem;
+}
+
+@keyframes fade-in {
+    from {opacity: 0; transform: scale(.7,.7)}
+    to {opacity: 1;}
+}
+.fade-in-element {
+  animation: fade-in 1.4s;
+}
+.hidden {
+    opacity: 0;
+  }
+
+
+@media (max-width: 800px) {
+    .img-car{
+        height: 50%;
+    }
+}

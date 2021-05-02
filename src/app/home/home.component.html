@@ -1,0 +1,208 @@
+<div class="column">
+<div class="top-banner">
+    <p class="topic-text">A simplified model of the cycle of greenhouse gases and its effects on global temperatures</p>
+</div>
+<ngb-carousel class="caro" *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators" [interval]="3000">
+  <ng-template ngbSlide *ngFor="let image of images">
+    <div class="picsum-img-wrapper">
+      <img [src]="image" class="img-car d-block mx-auto" alt="Global warming image">
+    </div>
+    
+  </ng-template>
+</ngb-carousel>
+
+<main class="body-container" id="body-container">
+    <div class="sticky hidden">
+        <side-nav></side-nav>
+    </div>
+
+    <div class="main">
+       <div class="hidden">
+            <h2 id="intro"><u>Introduction </u></h2>
+            <p class="wrap">
+                Global temperature increases have been forecasted by many scientists for centuries. In 1856, Eunice Newton Foote wrote about an experiment she conducted concerning the heat-trapping abilities of gases; she observed an increase in the temperature of carbon dioxide-filled jars and predicted the same for Earth if the atmosphere were to increase in CO2 concentration [1]. In 1896, Svante Arrhenius calculated that a doubling in the CO2 concentration in the atmosphere would lead to an increase in global temperatures by 5 to 6 degrees Celsius [2]. <br><br>
+
+                However, these predictions generally did not predict how quickly the atmospheric concentration of CO2 would change, and by extension, the magnitude of the observed temperature increase, possibly due to how quickly fossil fuel usage increased in the 20th century. As a result, global warming did not become a significant issue in the public eye until recent decades. <br><br>
+
+                Indeed, temperatures around the world have been observed to be on the rise for many decades. An inability to accurately predict temperature changes would leave humanity relatively helpless in its battle against climate change. Furthermore, the world would be afflicted with financially costly negative phenomena such as rising sea levels causing a loss in coastal buildings. Therefore, humans must be able to model and predict global temperature changes, given some assumed or measured parameters. <br><br>
+
+                There exist many different models with this objective. This website intends to study the model used by William D. Nordhaus in his 1991 journal entry “To Slow or Not to Slow: The Economics of The Greenhouse Effect.”
+            </p>
+        </div>
+        <div class="hidden">
+            <h2 id="definitions"><u>Definition of terms in equations </u></h2>
+            <p>
+                T(t) = increase in global mean surface temperature due to greenhouse warming since mid-19th century (°C) <br>
+                M(t) = anthropogenic atmospheric concentration of CO2 equivalent GHGs (billions of tons of CO2 equivalent) <br>
+                E(t) = anthropogenic emissions of CO2 equivalent GHGs (billions of tons of CO2 equivalent per year) <br>
+                g[.] = equilibrium increase in global mean temperature in response to increasing CO2 equivalent concentration <br>
+                α = delay parameter of temperature in response to radiative increase (per year) <br>
+                β = fraction of CO2 equivalent emissions that enter the atmosphere <br>
+                δ = rate of removal of CO2 equivalent from the atmosphere (per year) <br>
+                μ = linearised equilibrium sensitivity of temperature to concentrations of CO2-equivalent emissions (i.e., g'(M) = μ) <br>
+                <br>
+                <small>Dots denote time derivatives</small>
+            </p>
+        </div>
+        <div class="equation_container">
+            <div class="eqn_one hidden">
+                <h4 id="eqn_one"><u>Equation 2 from paper</u></h4>
+                <p>
+                    Ṁ(t) = βE(t) – δM(t) <br><br>
+
+                    This equation expresses how global emissions enter and leave the atmosphere. β is the fraction of human emissions which enters the atmosphere, so β*E(t) gives the total emissions entering the atmosphere at a given time [3]. δ is the fraction of atmospheric emissions which exit the atmosphere, through means such as diffusion into the sea [3]. Therefore, δ*M(t) gives the total emissions exiting the atmosphere at a given time.
+                    In this study, since E(t) is affected by so many factors and is difficult to model, it was made a constant. At the interactive graph section, different values E(t) can be tried out to see how the model responds.
+                </p>
+                <img height="400px" class="eqn_one_pic" src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/Eqn2_resized.png?alt=media&token=79f24800-1806-44f3-8840-9caa046958b0" alt="Equation2">
+
+            </div>
+            <div class="eqn_two hidden">
+                <h4 id="eqn_two"><u>Equation 3 from paper</u></h4>
+                <p>
+                    {{eqn_one}} <br><br>
+                    This equation is a simplification of equation 1, which is {{eqn_one_simp}} Equation 1 states that the difference between the actual global temperature increase and the increase in global equilibrium temperatures due to increasing CO2 equivalent concentration leads to an increase in the amount by which global temperatures change [3]. This equation was then linearized using the parameter μ to obtain the final form of equation 3.
+                </p>
+                <img height="400px" class="eqn_two_pic" src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/Equation_3_resized.png?alt=media&token=118a430a-4ba5-4d61-8f62-9d659e8d8a04" alt="Equation3">
+
+            </div>
+        </div>
+        <h2 class="hidden" id="solutions"><u>Solutions</u></h2>
+        <div class="solution-section">
+            <div class="matlab_script hidden">
+                <p>
+                    % Declaration of constants <br>
+                    alpha = 0.02;<br>
+                    beta = 0.5;<br>
+                    delta = 0.005;<br>
+                    mu = 4*10^-5;<br>
+                    E = 100;<br><br>
+                    
+                    % Equation 2: obtaining values for M(t) and plotting<br>
+                    startyear = 1985;<br>
+                    endyear = 2020;<br>
+                    Mvals = zeros((endyear-startyear+1),1);<br>
+                    Mvals(1) = 8000;<br>
+                    year = 1985;<br><br>
+                    
+                    while year &#60; endyear <br>
+                        counter = year-startyear + 1;<br>
+                        tspan = [year year+1];<br>
+                        M0 = Mvals(counter);<br><br>
+                        
+                        [time,M] = ode45(@(time,M) beta*E - delta*M, tspan, M0);<br>
+                        plot(time,M,'b-')<br>
+                        hold on;<br><br>
+                        
+                        Mvals(counter+1) = M(length(M));<br>
+                        year = year+1;<br>
+                    end<br><br>
+                    
+                    grid on<br>
+                    xlabel("Year")<br>
+                    ylabel("M(t) (millions of tons of CO2 equivalent)")<br>
+                    title("Anthropogenic atmospheric concentration of CO2 equivalent GHGs")<br><br>
+                    
+                    % Equation 3: obtaining values for T(t) and plotting<br>
+                    startyear = 1985;<br>
+                    endyear = 2020;<br>
+                    Tvals = zeros((endyear-startyear+1),1);<br>
+                    Tvals(1) = 0.3;<br>
+                    year = 1985;<br><br>
+                    
+                    figure<br>
+                    while year &#60; endyear<br>
+                        counter = year-startyear + 1;<br>
+                        tspan = [year year+1];<br>
+                        T0 = Tvals(counter);<br><br>
+                    
+                        [time,T] = ode45(@(time,T) alpha*mu*M(counter) - alpha*T, tspan, T0);<br>
+                        plot(time,T,'b-')<br>
+                        hold on;<br><br>
+                        
+                        Tvals(counter+1) = T(length(T));<br>
+                        year = year+1;<br>
+                    end<br><br>
+                    
+                    grid on<br>
+                    xlabel("Year")<br>
+                    ylabel("T(t) (°C)")<br>
+                    title("Increase in global mean surface temperatures due to greenhouse warming since 1850")<br>
+                </p>
+            </div>
+            <div class="solution_graphs hidden">
+                <div class="graph_one">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/Eqn2graph.png?alt=media&token=9c26916c-58ca-4e91-8faf-959f38769f5d" alt="">
+                </div>
+                <div class="graph_two">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/Eqn3graph.png?alt=media&token=3600df02-3420-458a-a164-44c803bfb798" alt="">
+                </div>
+                <div class="file_links">
+                    <p>You can access the MATLAB file and a published pdf of the code below</p>
+                    <a href="{{code_loc}}" download="pdf_filename.m"> <img width="30rem" src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/matlab.svg?alt=media&token=9f06161a-99c2-4dda-941f-8c600db64b87" alt=""> Matlab file</a><br>
+                    <a href="{{pdf_loc}}" download="code_filename.pdf"> <img width="30rem" src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/pdf_svg.svg?alt=media&token=3fa496c2-0ab3-4c5e-9d35-bfb49cd1dd51" alt=""> Published pdf</a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="results hidden">
+            <h2> <u> Results </u> </h2>
+            <p>
+                The models use initial data from Nordhaus’s paper. Table 2 provides the atmospheric concentration of CO2 for 1985. Given this data and the initial parameters of α = 0.02, β = 0.5, δ = 0.005, μ = 4*10-5 and E = 100, the results are as follows. <br>
+
+                The first graph (equation 2) indicates that the atmospheric concentration of CO2 is expected to increase from after 1985. The model predicts a relatively constant increase. <br>
+
+                The yearly results of the first graph, along with other parameters, result in the second graph (equation 3). This graph forecasts an increase in global mean surface temperatures, from 0.3°C above the 1850 average in 1985, to over 0.316°C in 2020. <br>
+            </p>
+        </div>        
+        <div class="graph_class hidden">
+                <h2> <u> Interactive graph </u></h2>
+                <p>The interactive graph below is for equation (2) from the paper</p>
+                <div class="graph_class_content">
+                    <div #graph id="graph" style="width: 800px; height: 400px;"></div>
+                    <div #graph id="graph_second" style="width: 800px; height: 400px;"></div>
+                </div>
+                <div class="graph_control_panel">
+                    <p>Original equation: {{o_eqn}}</p>
+                    <p>β = {{beta.value}}</p>
+                    <mat-slider
+                    #beta
+                    (change) = "updateBeta($event)"
+                    step="0.001"
+                    min="0.25"
+                    max="0.75"></mat-slider>
+
+                    <p>δ = {{delta.value}}</p>
+                    <mat-slider
+                    #delta
+                    (change) = "updateDelta($event)"
+                    step="0.0001"
+                    min="0.0025"
+                    max="0.0075"></mat-slider>
+
+                    <p>E = {{E.value}}</p>
+                    <mat-slider
+                    #E
+                    (change) = "updateE($event)"
+                    step="1"
+                    min="50"
+                    max="150"></mat-slider>
+                    <p>C = {{c}}</p>
+                    <p>Current equation: {{m_str}}</p>
+                </div>
+        </div>   
+        
+    </div>
+</main>
+<footer>
+    <div class="hidden">
+        <h4 class="src_heading" style="text-align: center;">
+            <u>References</u>
+        </h4>
+        <p class="src_list">
+            {{sources[0]}} <br>
+            {{sources[1]}} <br>
+            {{sources[2]}}
+        </p>
+    </div>
+</footer>
+</div>

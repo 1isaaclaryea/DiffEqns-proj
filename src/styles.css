@@ -19,17 +19,27 @@
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
-body{
-    font-family: 'Lato', sans-serif;
-}
+    
+    html {
+        scroll-behavior: smooth;
+      }
 @media (max-width: 800px) {
     body{
-        font-size: medium;
+        font-size: small;
+    }
+    .side-nav{
+        font-size: small
+    }
+    .graph_class{
+        flex-direction: column;
     }
 }
 @media (max-width: 480px) {
     body{
         font-size: small;
+    }
+    .graph_class{
+        flex-direction: column;
     }
 }
 html, body { height: 100%; }
