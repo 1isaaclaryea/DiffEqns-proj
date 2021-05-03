@@ -2,14 +2,16 @@
 <div class="top-banner">
     <p class="topic-text">A simplified model of the cycle of greenhouse gases and its effects on global temperatures</p>
 </div>
-<ngb-carousel class="caro" *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators" [interval]="3000">
+<!-- <ngb-carousel class="caro" *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators" [interval]="3000">
   <ng-template ngbSlide *ngFor="let image of images">
     <div class="picsum-img-wrapper">
       <img [src]="image" class="img-car d-block mx-auto" alt="Global warming image">
     </div>
     
   </ng-template>
-</ngb-carousel>
+</ngb-carousel> -->
+
+<video src="{{video_loc}}" controls></video>
 
 <main class="body-container" id="body-container">
     <div class="sticky hidden">
@@ -61,6 +63,7 @@
                 <p>
                     {{eqn_one}} <br><br>
                     This equation is a simplification of equation 1, which is {{eqn_one_simp}} Equation 1 states that the difference between the actual global temperature increase and the increase in global equilibrium temperatures due to increasing CO2 equivalent concentration leads to an increase in the amount by which global temperatures change [3]. This equation was then linearized using the parameter μ to obtain the final form of equation 3.
+                    <br><br><br>
                 </p>
                 <img height="400px" class="eqn_two_pic" src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/Equation_3_resized.png?alt=media&token=118a430a-4ba5-4d61-8f62-9d659e8d8a04" alt="Equation3">
 
@@ -136,11 +139,7 @@
                 <div class="graph_two">
                     <img src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/Eqn3graph.png?alt=media&token=3600df02-3420-458a-a164-44c803bfb798" alt="">
                 </div>
-                <div class="file_links">
-                    <p>You can access the MATLAB file and a published pdf of the code below</p>
-                    <a href="{{code_loc}}" download="pdf_filename.m"> <img width="30rem" src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/matlab.svg?alt=media&token=9f06161a-99c2-4dda-941f-8c600db64b87" alt=""> Matlab file</a><br>
-                    <a href="{{pdf_loc}}" download="code_filename.pdf"> <img width="30rem" src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/pdf_svg.svg?alt=media&token=3fa496c2-0ab3-4c5e-9d35-bfb49cd1dd51" alt=""> Published pdf</a>
-                </div>
+                
             </div>
             
         </div>
@@ -152,44 +151,121 @@
                 The first graph (equation 2) indicates that the atmospheric concentration of CO2 is expected to increase from after 1985. The model predicts a relatively constant increase. <br>
 
                 The yearly results of the first graph, along with other parameters, result in the second graph (equation 3). This graph forecasts an increase in global mean surface temperatures, from 0.3°C above the 1850 average in 1985, to over 0.316°C in 2020. <br>
+                Click <a href="{{analyt_loc}}" target="_blank">here</a> to access the handwritten analytical solution.
             </p>
+               
+            <div class="file_links">
+                <p>You can access the MATLAB file and a published pdf of the code below</p>
+                <a href="{{code_loc}}" download="pdf_filename.m"> <img width="30rem" src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/matlab.svg?alt=media&token=9f06161a-99c2-4dda-941f-8c600db64b87" alt=""> Matlab file</a><br>
+                <a href="{{pdf_loc}}" download="code_filename.pdf"> <img width="30rem" src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/pdf_svg.svg?alt=media&token=3fa496c2-0ab3-4c5e-9d35-bfb49cd1dd51" alt=""> Published pdf</a>
+            </div><br><br>
+
+            <p><strong>Parameter sensitivity test</strong></p>
+            <div class="hidden">
+                <p>
+                    A parameter analysis was performed on the β and δ parameters. We increased the value of β by 5% and found the corresponding percentage increases in M(2020) and T(2020), then we repeated this process with δ. These parameters were chosen because they are parameters which directly influence the flow of GHGs into and out of the atmosphere.
+                    The value of the sensitivity is found by dividing the percentage change in the output variable by the percentage change in the input variable. Since the input variables were each increased by 5%, the value of the denominator is 5. Thus, we calculated the percentage change in output variable and divided by 5 to obtain the sensitivities. <br>
+                    Sensitivity values <br>
+                    Sensitivity of M as δ increases by 5% = -0.1570 <br>
+                    Sensitivity of M as β increases by 5% = 0.1929 <br>
+                    Sensitivity of T as δ increases by 5% = -0.0820 <br>
+                    Sensitivity of T as β increases by 5% = 0.1008 <br>
+                    This shows that the results of the model are more greatly affected with changes in β than with changes in δ. <br>
+                    On the graphs below, the blue line represents the original value, the red line represents β and the black line represents δ.
+                </p>
+                <div class="p_s_five hidden">
+                    <div class="graph_one">
+                        <strong>M(t)</strong>
+                        <img src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/m_five_p.png?alt=media&token=d5f3150e-7f47-4179-a141-1052a90beb61" alt="">
+                    </div>
+                    <div class="graph_two">
+                        <strong>T(t)</strong>
+                        <img src="https://firebasestorage.googleapis.com/v0/b/team-nii.appspot.com/o/t_five_p.png?alt=media&token=582dc36f-487a-499f-994a-5426962d7789" alt="">
+                    </div>
+                </div>
+            </div>
+            
         </div>        
         <div class="graph_class hidden">
                 <h2> <u> Interactive graph </u></h2>
-                <p>The interactive graph below is for equation (2) from the paper</p>
-                <div class="graph_class_content">
-                    <div #graph id="graph" style="width: 800px; height: 400px;"></div>
-                    <div #graph id="graph_second" style="width: 800px; height: 400px;"></div>
-                </div>
+                <p class="inter_intro">
+                    <br>Indeed, experience is the best teacher. For this reason, we have included an interactive graph section. This section allows the reader to have a better understanding of the modelled equations. By varying the paramters, the reader sees how the outputs for each graph changes.
+                </p>
                 <div class="graph_control_panel">
-                    <p>Original equation: {{o_eqn}}</p>
-                    <p>β = {{beta.value}}</p>
-                    <mat-slider
-                    #beta
-                    (change) = "updateBeta($event)"
-                    step="0.001"
-                    min="0.25"
-                    max="0.75"></mat-slider>
+                    <h3 class="control_panel_heading">Control panel</h3>
+                    <p>Original equations: <ng-katex [equation]="o_eqn_M_t"></ng-katex> &nbsp; &nbsp; &nbsp; &nbsp; <ng-katex [equation]="o_eqn_T_t"></ng-katex> </p>
+                    <div class="sliders">
+                        <div class="slider_component">
+                            <p>β = {{beta.value}}</p>
+                            <mat-slider
+                            #beta
+                            (change) = "updateBeta($event)"
+                            step="0.001"
+                            min="0.40"
+                            max="0.60"></mat-slider>
+                        </div>
+                        
+                        <div class="slider_component">
+                            <p>δ = {{delta.value}}</p>
+                            <mat-slider
+                            #delta
+                            (change) = "updateDelta($event)"
+                            step="0.0001"
+                            min="0.004"
+                            max="0.006"></mat-slider>
+                        </div>
 
-                    <p>δ = {{delta.value}}</p>
-                    <mat-slider
-                    #delta
-                    (change) = "updateDelta($event)"
-                    step="0.0001"
-                    min="0.0025"
-                    max="0.0075"></mat-slider>
+                        <div class="slider_component">
+                            <p>E = {{E.value}}</p>
+                            <mat-slider
+                            #E
+                            (change) = "updateE($event)"
+                            step="1"
+                            min="80"
+                            max="120"></mat-slider>
+                        </div>
+                        
+                        <div class="slider_component">
+                            <p>α = {{alpha.value}}</p>
+                            <mat-slider
+                            #alpha
+                            (change) = "updateAlpha($event)"
+                            step="0.001"
+                            min="0.015"
+                            max="0.025"></mat-slider>
+                        </div>
 
-                    <p>E = {{E.value}}</p>
-                    <mat-slider
-                    #E
-                    (change) = "updateE($event)"
-                    step="1"
-                    min="50"
-                    max="150"></mat-slider>
-                    <p>C = {{c}}</p>
-                    <p>Current equation: {{m_str}}</p>
+                        <div class="slider_component">
+                            <p>μ = {{mu.value}}</p>
+                            <mat-slider
+                            #mu
+                            (change) = "updateMu($event)"
+                            step="0.000001"
+                            min="0.000035"
+                            max="0.000045"></mat-slider>
+                        </div>
+                    </div>
+                    
+                    <p><ng-katex [equation]="cm_ltk"></ng-katex> = {{c}}</p>
+                    <p><ng-katex [equation]="ct_ltk"></ng-katex> = {{c_t}}</p>
+                    <p>Current equations: M(t) = <ng-katex [equation]="m_str"></ng-katex> <br>
+                        T(t) = <ng-katex [equation]="second_equation"></ng-katex>
+                    </p>
                 </div>
-        </div>   
+                <div class="graph_class_content">
+                    
+                    <div #graph id="graph" style="width: 800px; height: 400px;"><h6 style="text-align: center;">M(t)</h6> </div>
+                    
+                    <div #graph2 id="graph_second" style="width: 800px; height: 400px;"> <h6 style="text-align: center;">T(t)</h6></div>
+                </div>
+        </div>
+        
+        <div class="future">
+            <h2> <u> Further research </u></h2>
+            <p>
+                To make this model more accurate and flexible, the GHG sinks could be further analyzed. In the paper, the only GHG sink analyzed is the sea. However, dissolution into sea water is not the only means by which GHGs leave the atmosphere. Some are absorbed by rocks, some undergo chemical reactions, and some are absorbed by plants. An improvement to the model could be to consider these GHG sinks and incorporate them into the relevant equations.
+            </p>
+        </div>
         
     </div>
 </main>
@@ -201,7 +277,8 @@
         <p class="src_list">
             {{sources[0]}} <br>
             {{sources[1]}} <br>
-            {{sources[2]}}
+            {{sources[2]}} <br>
+            {{sources[3]}}
         </p>
     </div>
 </footer>

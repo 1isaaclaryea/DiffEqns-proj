@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { KatexModule } from "ng-katex";
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { MatSliderModule } from '@angular/material/slider';
 
@@ -18,7 +19,8 @@ import { MatSliderModule } from '@angular/material/slider';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    MatSliderModule
+    MatSliderModule,
+    KatexModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -98,6 +98,14 @@ a{
     height: 60rem;
 }
 
+.p_s_five{
+    display: flex;
+}
+
+.text_fifty{
+    flex-basis: 50%;
+}
+
 .solution_graphs{
     display: flex;
     flex-direction: column;
@@ -110,6 +118,10 @@ a{
 }
 .graph_two{
     padding: 1rem;
+}
+
+.inter_intro{
+    padding-bottom: 1rem;
 }
 
 footer{
@@ -140,6 +152,7 @@ p.src_list{
     display: flex;
     flex-direction: row;
     /* margin: 1rem; */
+    padding-bottom: 1rem;
 }
 
 .sticky {
@@ -152,7 +165,46 @@ p.src_list{
 #graph{
     padding: 1rem;
 }
+#graph_second{
+    padding: 1rem;
+}
 
+.sliders{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    justify-content: space-around;
+}
+.slider_component>p{
+    margin-bottom: 0.5rem;
+}
+.slider_component{
+    display:flex;
+    flex-direction:column;
+    padding: 1rem;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+
+
+.graph_control_panel{
+    border: 2px solid #FF5349;
+    border-radius: 1rem;
+    padding: 1rem;
+    align-items: center;
+}
+
+.control_panel_heading{
+    margin-top:-2rem;
+    /* margin-left:-2rem; */
+    /* margin-left:5px; */
+    background-color: white;
+    width: fit-content;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+}
 @keyframes fade-in {
     from {opacity: 0; transform: scale(.7,.7)}
     to {opacity: 1;}

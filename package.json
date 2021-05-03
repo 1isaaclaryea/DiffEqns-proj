@@ -26,6 +26,7 @@
     "bootstrap": "^4.5.0",
     "desmos": "^1.5.4",
     "function-plot": "^1.22.7",
+    "ng-katex": "^2.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
